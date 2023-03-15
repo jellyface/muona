@@ -1,0 +1,29 @@
+version: '3.7'
+services:
+  # muona-nest:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.dev
+  #   image: muona-nest 
+  #   working_dir: /app
+  #   restart: on-failure
+  #   volumes:
+  #     - .:/app
+  #     - /app/node_modules
+  #   ports:
+  #     - '3000:3000'
+  #   depends_on:
+  #     - muona-db
+
+  muona-db:
+    image: postgres:bullseye
+    restart: always
+    environment:
+      POSTGRES_DB: muona
+      POSTGRES_USER: muona
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+
